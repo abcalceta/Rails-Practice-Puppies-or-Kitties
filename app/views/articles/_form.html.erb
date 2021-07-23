@@ -5,6 +5,12 @@
     <%= form.select :status, ['public', 'private', 'archived'], selected: 'public' %>
   </div>
 
+  <div>
+    <%= form.label :tag %><br>
+    <%= form.select :tag, ['kitten', 'puppy'], selected: 'kitten' %>
+  </div>
+
+
 
   <div>
     <%= form.label :title %><br>

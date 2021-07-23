@@ -1,3 +1,5 @@
+require 'flickr'
+
 class ArticlesController < ApplicationController
 
   def index
@@ -6,6 +8,11 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
+
+    flickr = Flickr.new #set the api key in the environment variables
+    search_results = flickr.photos.search :api_key => ENV['FLICKR_API_KEY'], :tags => [@article.tag]
+    @image = Flickr.url_m(search_results[0])
+
   end
 
   def new
@@ -45,10 +52,9 @@ class ArticlesController < ApplicationController
   end
 
 
-
   private
     def article_params
-      params.require(:article).permit(:title, :body, :status)
+      params.require(:article).permit(:title, :body, :status, :tag)
     end
 
 end
