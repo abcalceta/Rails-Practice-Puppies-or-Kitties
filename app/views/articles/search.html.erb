@@ -1,3 +1,7 @@
-<% @search_results.each do |result| %>
-  <%= link_to result.title, result %>
+<% if @search_results.empty? %>
+  <h1>No results</h1>
+<% else %>
+  <% @search_results.each do |result| %>
+    <h1><%= link_to result.title, result %></h1></br>
+  <% end %>
 <% end %>

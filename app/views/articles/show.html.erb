@@ -1,19 +1,45 @@
-<h1><%= @article.title %></h1>
 
-<p><%= @article.body %></p>
-
-<img src="<%= @image %>" alt="">
-
-
-<ul>
-  <li><%= link_to "Edit", edit_article_path(@article) %></li>
-  <li><%= link_to "Destroy", article_path(@article),
-                method: :delete,
-                data: { confirm: "Are you sure?" } %></li>
-</ul>
-
-<h2>Comments</h2>
-<%= render @article.comments %>
-
-<h2>Add a comment:</h2>
-<%= render 'comments/form' %>
+<div class="row">
+  <div class="col-1"></div>
+  <div class="col-10">
+    <h1 class = "<%= @article.tag %>"><%= @article.title %></h1>
+  </div>
+  <div class="col-1"></div>
+</div>
+<div class="row">
+  <div class="col-1"></div>
+  <div class="col-10">
+    <div class="btn-group">
+      <%= link_to "Edit", edit_article_path(@article), class:"btn-sm btn btn-warning"%>
+      <%= link_to "Destroy", article_path(@article),
+      method: :delete,
+      data: { confirm: "Are you sure?" },
+      class:"btn btn-danger btn-sm" %>
+    </div>
+  </div>
+  <div class="col-1"></div>
+</div>
+<div class="row">
+</div>
+<div class="row">
+  <div class="col-1"></div>
+  <div class="col-7">
+    <p><%= @article.body %></p>
+  </div>
+  <div class="col-4 article-image">
+    <img src="<%= @image %>" class="rounded img-fluid" alt="...">
+  </div>
+  <div class="col-1"></div>
+</div>
+<div class="row">
+  <div class="col-1"></div>
+  <div class="col-10">
+    <h2 >Comments</h2>
+    <%= render @article.comments %>
+    <div class="add-comment">
+      <h2>Add a comment:</h2>
+      <%= render 'comments/form' %>
+    </div>
+  </div>
+  <div class="col-1"></div>
+</div>
