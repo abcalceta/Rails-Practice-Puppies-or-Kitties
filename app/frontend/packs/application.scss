@@ -1,0 +1,10 @@
+@import "bootstrap";
+
+main {
+  padding-top: 60px;
+}
+@media (max-width: 979px) {
+  main {
+    padding-top: 0px;
+  }
+}

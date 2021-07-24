@@ -2,12 +2,12 @@
 
   <div>
     <%= form.label :status %><br>
-    <%= form.select :status, ['public', 'private', 'archived'], selected: 'public' %>
+    <%= form.select :status, ['public', 'private', 'archived'], selected: @article.status %>
   </div>
 
   <div>
     <%= form.label :tag %><br>
-    <%= form.select :tag, ['kitten', 'puppy'], selected: 'kitten' %>
+    <%= form.select :tag, ['kitten', 'puppy'], selected: @article.tag %>
   </div>
 
 

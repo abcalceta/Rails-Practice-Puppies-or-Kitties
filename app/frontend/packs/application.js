@@ -18,4 +18,4 @@ Turbolinks.start()
 ActiveStorage.start()
 
 
-import "bootstrap"
+import '../js/bootstrap_js_files.js'  
