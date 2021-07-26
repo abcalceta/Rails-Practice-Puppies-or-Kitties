@@ -12,7 +12,6 @@ class ArticlesController < ApplicationController
   def show
     @article = Article.find(params[:id])
     @image = get_random_image(@article.id)
-    @inspiration = get_inspiring_message()
   end
 
   def new
@@ -57,7 +56,7 @@ class ArticlesController < ApplicationController
       @search_results = []
     else
       @search_param = params[:search].downcase
-      @search_results = Article.where("title LIKE ?", "%" + @search_param + "%")
+      @search_results = Article.where("title LIKE :search_param OR body LIKE :search_param", search_param: "%#{@search_param}%")
     end
     # redirect_to search_path
   end

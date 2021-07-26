@@ -1,7 +1,22 @@
+<h1>You searched for "<%= @search_param %>"!</h1>
 <% if @search_results.empty? %>
   <h1>No results</h1>
 <% else %>
   <% @search_results.each do |result| %>
-    <h1><%= link_to result.title, result %></h1></br>
+    <div class="row row-cols-1 row-cols-md-3">
+      <div class="col mb-4">
+        <div class="<%= result.tag + " card h-5"%>">
+          <img src="<%= get_random_image(result.id) %>" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h1 class="card-title"><%= link_to result.title, result, class:"search-result"%></h1>
+            <br>
+            <p class="card-text"><%= result.body[0,50]+"..."%></p>
+            <p class="comments-count"><%= result.comments.count %> <%= result.comments.count>1||result.comments.count==0? "comment".pluralize : "comment"%></p>
+            <%= link_to generate_flavor_text(result.tag), result, class: result.tag+" btn"%>
+          </div>
+        </div>
+      </div>
+    </div>
+
   <% end %>
 <% end %>

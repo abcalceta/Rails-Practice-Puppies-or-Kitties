@@ -18,4 +18,5 @@ Turbolinks.start()
 ActiveStorage.start()
 
 
-import '../js/bootstrap_js_files.js'  
+import '../js/bootstrap_js_files.js'
+const images = require.context('../images', true)

@@ -1,34 +1,41 @@
 <%= form_with model: article do |form| %>
 
   <div>
-    <%= form.label :status %><br>
-    <%= form.select :status, ['public', 'private', 'archived'], selected: @article.status %>
+    <%= form.select :tag, options_for_select([
+      ["Which cutie is best?", @article.tag],
+      "kitten","puppy"]),
+      {}, { class: "form form-group form-control" } %>
+    <% article.errors.full_messages_for(:tag).each do |message| %>
+      <div class="alert alert-danger"><%= message %></div>
+    <% end %>
+    <br>
   </div>
 
   <div>
-    <%= form.label :tag %><br>
-    <%= form.select :tag, ['kitten', 'puppy'], selected: @article.tag %>
-  </div>
-
-
-
-  <div>
-    <%= form.label :title %><br>
-    <%= form.text_field :title %>
+    <h2>Give your post a title!</h2>
+    <br>
+    <div class="input-group input-group-lg">
+      <%= form.text_field :title, class: "form-control"%>
+    </div>
     <% article.errors.full_messages_for(:title).each do |message| %>
-      <div><%= message %></div>
+    <div class="alert alert-danger"><%= message %></div>
     <% end %>
+    <br>
   </div>
 
   <div>
-    <%= form.label :body %><br>
-    <%= form.text_area :body %><br>
+    <h2>Explain why they're the best</h2>
+    <br>
+    <div class="input-group input-group-lg">
+      <%= form.text_area :body, class: "form-control"%><br>
+    </div>
     <% article.errors.full_messages_for(:body).each do |message| %>
-      <div><%= message %></div>
+    <div class="alert alert-danger"><%= message %></div>
     <% end %>
+    <br>
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit "Add a cute animal to the list" %>
   </div>
 <% end %>

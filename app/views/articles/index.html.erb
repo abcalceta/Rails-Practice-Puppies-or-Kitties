@@ -1,7 +1,7 @@
 <h1>Puppies or Kitties?</h1>
 <h2>Debate whether puppies or kittens are better!</h2>
-<p>Create a post, and be rewarded by a cute image of either a puppy or a kitty from Flickr. I wonder which faction would get the most posts?</p>
-<p>People have posted a total of <%= Article.public_count %> puppies and kittens!</p>
+<p>Create a post, and be rewarded by a cute image of either a puppy or a kitty from Flickr. I wonder which group of animal lovers would make the most posts?</p>
+<p>People have posted a total of <%= Article.count %> <%= Article.count>1||Article.count==0? "post".pluralize : "post"%> about puppies and/or kittens!</p>
 <% if @kitten_num > @puppy_num %>
   <h3>Meow! Kittens are currently in the lead!</h3>
 <% elsif @puppy_num > @kitten_num %>
@@ -13,13 +13,14 @@
 <h1><%= link_to "Add a puppy or kitty", new_article_path, class:"add-button btn"%></h1>
 <div class="row row-cols-1 row-cols-md-3">
   <% @articles.each do |article| %>
-    <% unless article.archived? %>
+    <% if article.tag!=nil %>
       <div class="col mb-4">
-        <div class="<%= article.tag+" card h-5"%>">
+        <div class="<%= article.tag + " card h-5"%>">
           <img src="<%= get_random_image(article.id) %>" class="card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title"><%= article.title %></h5>
+            <h1 class="card-title"><%= article.title %></h1>
             <p class="card-text"><%= article.body[0,50]+"..."%></p>
+            <p class="comments-count"><%= article.comments.count %> <%= article.comments.count>1||article.comments.count==0? "comment".pluralize : "comment"%></p>
             <%= link_to generate_flavor_text(article.tag), article, class: article.tag+" btn"%>
           </div>
         </div>
