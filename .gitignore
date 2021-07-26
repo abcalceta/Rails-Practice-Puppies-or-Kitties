@@ -36,5 +36,4 @@ yarn-debug.log*
 .yarn-integrity
 
 
-#apparently we should ignore this (according to a tutorial)
-database.yml
+
